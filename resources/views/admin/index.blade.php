@@ -10,7 +10,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12">
-                                    <table class="table" id="mainTable">
+                                    <table class="table table-responsive-lg" id="mainTable">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -28,7 +28,7 @@
                                         @foreach($servers as $server)
                                             <tr>
                                                 <td>{{$server->id}}</td>
-                                                <td>{{$server->serverName}}</td>
+                                                <td>{{$server->nameNice}}</td>
                                                 <td>{{$server->serverIp}}</td>
                                                 <td>{{$server->serverPort}}</td>
                                                 <td>{{$server->serverPassword}}</td>
@@ -36,9 +36,9 @@
                                                 <td>{{$server->rconPort}}</td>
                                                 <td>{{$server->rconPassword}}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-sm btn-outline-primary">Edit</a>
-                                                    <a href="#" class="btn btn-sm btn-outline-primary">Remove</a>
-                                                    <a href="#" class="btn btn-sm btn-outline-primary">Verify</a>
+                                                    <span class="material-icons-round text-warning mx-1">edit</span>
+                                                    <span class="material-icons-round text-danger mx-1">delete</span>
+                                                    <span class="material-icons-round text-info mx-1">network_ping</span>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -71,6 +71,8 @@
                         <div class="row mb-3">
                             <div class="col-12">
                                 <label for="ServerName">Server Name</label>
+                                <input id="ServerName" name="ServerName" type="text" minlength="4" maxlength="32" placeholder="Server Name" class="form-control" required>
+                                <div id="ServerNameHelp" class="form-text">Name your server for easy identification. Min. 4 characters, Max. 32 characters.</div>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -94,9 +96,9 @@
                             <div class="col-12">
                                 <label for="basic-url" class="form-label">RCON Server Details</label>
                                 <div class="input-group">
-                                    <input name="serverIp" type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" class="form-control w-50" placeholder="RCON IP" aria-label="RCON IP" required>
+                                    <input name="RconServerIp" type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" class="form-control w-50" placeholder="RCON IP" aria-label="RCON IP" required>
                                     <span class="input-group-text">:</span>
-                                    <input name="serverPort" type="number" class="form-control" placeholder="RCON Port" aria-label="RCON Port" min="1" max="65535" required>
+                                    <input name="RconServerPort" type="number" class="form-control" placeholder="RCON Port" aria-label="RCON Port" min="1" max="65535" required>
                                 </div>
                             </div>
                         </div>

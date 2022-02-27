@@ -74,6 +74,20 @@
         </nav>
 
         <main class="py-4">
+            @if($errors->any())
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="alert alert-danger w-75" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @foreach($errors->all() as $error)
+                                {{ $error }}<br/>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>

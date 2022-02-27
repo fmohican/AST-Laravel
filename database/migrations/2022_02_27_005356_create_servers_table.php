@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('servers', function (Blueprint $table) {
             $table->id();
-            $table->string('NiceName');
-            $table->string('SlugName');
+            $table->string('nameNice');
+            $table->string('nameSlug')->unique();
             $table->ipAddress('serverIp');
             $table->smallInteger('serverPort')->unsigned();
             $table->string('serverPassword')->nullable();
