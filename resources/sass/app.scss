@@ -1,0 +1,16 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import "~bootswatch/dist/darkly/variables";
+@import '~bootstrap/scss/bootstrap';
+@import "~bootswatch/dist/darkly/bootswatch";
+
+// SweetAlert
+@import '@sweetalert2/theme-dark/dark';
+
+//Material Icons From Google
+@import 'material-icons/iconfont/material-icons';
