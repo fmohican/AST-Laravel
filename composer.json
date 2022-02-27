@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "fmohican/ast-laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Amunet Server Transfer (Conan Exiles) based on Laravel",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
