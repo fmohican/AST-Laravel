@@ -14,6 +14,7 @@ class ServersController extends Controller
     }
 
     /**
+     * Registering server to database, so we can use to transfer characters.
      * We will let laravel to handle input safety...
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|void
@@ -39,5 +40,27 @@ class ServersController extends Controller
             "rconPassword" => $request->input('RconServerPassword'),
         ]);
         return back();
+    }
+
+    /**
+     * Soft delete existent server, but keep them in database, cuz of logs dependency.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Request $request) {
+        try {
+            $request->validate([
+                'serverId' => ['integer', 'required'],
+            ]);
+            $server = Servers::find($request->input('serverId'));
+            $server->delete();
+            return response()->json([
+                "status" => 200,
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'status' => 500,
+            ]);
+        }
     }
 }

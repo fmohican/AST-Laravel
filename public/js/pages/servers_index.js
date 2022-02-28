@@ -1,0 +1,32 @@
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./resources/js/pages/servers_index.js":
+/*!*********************************************!*\
+  !*** ./resources/js/pages/servers_index.js ***!
+  \*********************************************/
+/***/ (() => {
+
+eval("function remove() {\n  $(document).on('click', '.btn-delete', function () {\n    var id = $(this).data('id');\n    Swal.fire({\n      title: 'Are you sure?',\n      text: 'This operation is irreversible, the server will be gone.',\n      icon: 'question',\n      showCancelButton: true,\n      confirmButtonColor: '#3085d6',\n      cancelButtonColor: '#d33',\n      confirmButtonText: 'Continue',\n      cancelButtonText: 'Abort'\n    }).then(function (response) {\n      if (response.isConfirmed) {\n        $.post(route('app.admin.server.delete'), {\n          _method: 'delete',\n          serverId: id\n        }).then(function (resp) {\n          if (resp.status === 200) {\n            Swal.fire({\n              title: 'Server was deleted!',\n              icon: 'success'\n            });\n            $('tr[data-id=\"' + id + '\"]').remove();\n          } else {\n            Swal.fire({\n              title: \"Something went wrong.\",\n              icon: 'error'\n            });\n          }\n        });\n      }\n    });\n  });\n}\n\n$(document).ready(function () {\n  remove();\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvcGFnZXMvc2VydmVyc19pbmRleC5qcz9jNzg3Il0sIm5hbWVzIjpbInJlbW92ZSIsIiQiLCJkb2N1bWVudCIsIm9uIiwiaWQiLCJkYXRhIiwiU3dhbCIsImZpcmUiLCJ0aXRsZSIsInRleHQiLCJpY29uIiwic2hvd0NhbmNlbEJ1dHRvbiIsImNvbmZpcm1CdXR0b25Db2xvciIsImNhbmNlbEJ1dHRvbkNvbG9yIiwiY29uZmlybUJ1dHRvblRleHQiLCJjYW5jZWxCdXR0b25UZXh0IiwidGhlbiIsInJlc3BvbnNlIiwiaXNDb25maXJtZWQiLCJwb3N0Iiwicm91dGUiLCJfbWV0aG9kIiwic2VydmVySWQiLCJyZXNwIiwic3RhdHVzIiwicmVhZHkiXSwibWFwcGluZ3MiOiJBQUFBLFNBQVNBLE1BQVQsR0FBa0I7QUFDZEMsRUFBQUEsQ0FBQyxDQUFDQyxRQUFELENBQUQsQ0FBWUMsRUFBWixDQUFlLE9BQWYsRUFBd0IsYUFBeEIsRUFBdUMsWUFBWTtBQUMvQyxRQUFJQyxFQUFFLEdBQUdILENBQUMsQ0FBQyxJQUFELENBQUQsQ0FBUUksSUFBUixDQUFhLElBQWIsQ0FBVDtBQUNBQyxJQUFBQSxJQUFJLENBQUNDLElBQUwsQ0FBVTtBQUNOQyxNQUFBQSxLQUFLLEVBQUUsZUFERDtBQUVOQyxNQUFBQSxJQUFJLEVBQUUsMERBRkE7QUFHTkMsTUFBQUEsSUFBSSxFQUFFLFVBSEE7QUFJTkMsTUFBQUEsZ0JBQWdCLEVBQUUsSUFKWjtBQUtOQyxNQUFBQSxrQkFBa0IsRUFBRSxTQUxkO0FBTU5DLE1BQUFBLGlCQUFpQixFQUFFLE1BTmI7QUFPTkMsTUFBQUEsaUJBQWlCLEVBQUUsVUFQYjtBQVFOQyxNQUFBQSxnQkFBZ0IsRUFBRTtBQVJaLEtBQVYsRUFTR0MsSUFUSCxDQVNRLFVBQVVDLFFBQVYsRUFBb0I7QUFDeEIsVUFBR0EsUUFBUSxDQUFDQyxXQUFaLEVBQXlCO0FBQ3JCakIsUUFBQUEsQ0FBQyxDQUFDa0IsSUFBRixDQUFPQyxLQUFLLENBQUMseUJBQUQsQ0FBWixFQUF5QztBQUNyQ0MsVUFBQUEsT0FBTyxFQUFFLFFBRDRCO0FBRXJDQyxVQUFBQSxRQUFRLEVBQUVsQjtBQUYyQixTQUF6QyxFQUdHWSxJQUhILENBR1EsVUFBVU8sSUFBVixFQUFnQjtBQUNwQixjQUFHQSxJQUFJLENBQUNDLE1BQUwsS0FBZ0IsR0FBbkIsRUFBd0I7QUFDcEJsQixZQUFBQSxJQUFJLENBQUNDLElBQUwsQ0FBVTtBQUNOQyxjQUFBQSxLQUFLLEVBQUUscUJBREQ7QUFFTkUsY0FBQUEsSUFBSSxFQUFFO0FBRkEsYUFBVjtBQUlBVCxZQUFBQSxDQUFDLENBQUMsaUJBQWVHLEVBQWYsR0FBa0IsSUFBbkIsQ0FBRCxDQUEwQkosTUFBMUI7QUFDSCxXQU5ELE1BT0s7QUFDRE0sWUFBQUEsSUFBSSxDQUFDQyxJQUFMLENBQVU7QUFDTkMsY0FBQUEsS0FBSyxFQUFFLHVCQUREO0FBRU5FLGNBQUFBLElBQUksRUFBRTtBQUZBLGFBQVY7QUFJSDtBQUNKLFNBakJEO0FBa0JIO0FBQ0osS0E5QkQ7QUErQkgsR0FqQ0Q7QUFrQ0g7O0FBRURULENBQUMsQ0FBQ0MsUUFBRCxDQUFELENBQVl1QixLQUFaLENBQWtCLFlBQVk7QUFDMUJ6QixFQUFBQSxNQUFNO0FBQ1QsQ0FGRCIsInNvdXJjZXNDb250ZW50IjpbImZ1bmN0aW9uIHJlbW92ZSgpIHtcbiAgICAkKGRvY3VtZW50KS5vbignY2xpY2snLCAnLmJ0bi1kZWxldGUnLCBmdW5jdGlvbiAoKSB7XG4gICAgICAgIGxldCBpZCA9ICQodGhpcykuZGF0YSgnaWQnKTtcbiAgICAgICAgU3dhbC5maXJlKHtcbiAgICAgICAgICAgIHRpdGxlOiAnQXJlIHlvdSBzdXJlPycsXG4gICAgICAgICAgICB0ZXh0OiAnVGhpcyBvcGVyYXRpb24gaXMgaXJyZXZlcnNpYmxlLCB0aGUgc2VydmVyIHdpbGwgYmUgZ29uZS4nLFxuICAgICAgICAgICAgaWNvbjogJ3F1ZXN0aW9uJyxcbiAgICAgICAgICAgIHNob3dDYW5jZWxCdXR0b246IHRydWUsXG4gICAgICAgICAgICBjb25maXJtQnV0dG9uQ29sb3I6ICcjMzA4NWQ2JyxcbiAgICAgICAgICAgIGNhbmNlbEJ1dHRvbkNvbG9yOiAnI2QzMycsXG4gICAgICAgICAgICBjb25maXJtQnV0dG9uVGV4dDogJ0NvbnRpbnVlJyxcbiAgICAgICAgICAgIGNhbmNlbEJ1dHRvblRleHQ6ICdBYm9ydCdcbiAgICAgICAgfSkudGhlbihmdW5jdGlvbiAocmVzcG9uc2UpIHtcbiAgICAgICAgICAgIGlmKHJlc3BvbnNlLmlzQ29uZmlybWVkKSB7XG4gICAgICAgICAgICAgICAgJC5wb3N0KHJvdXRlKCdhcHAuYWRtaW4uc2VydmVyLmRlbGV0ZScpLCB7XG4gICAgICAgICAgICAgICAgICAgIF9tZXRob2Q6ICdkZWxldGUnLFxuICAgICAgICAgICAgICAgICAgICBzZXJ2ZXJJZDogaWQsXG4gICAgICAgICAgICAgICAgfSkudGhlbihmdW5jdGlvbiAocmVzcCkge1xuICAgICAgICAgICAgICAgICAgICBpZihyZXNwLnN0YXR1cyA9PT0gMjAwKSB7XG4gICAgICAgICAgICAgICAgICAgICAgICBTd2FsLmZpcmUoe1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlOiAnU2VydmVyIHdhcyBkZWxldGVkIScsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgaWNvbjogJ3N1Y2Nlc3MnLFxuICAgICAgICAgICAgICAgICAgICAgICAgfSk7XG4gICAgICAgICAgICAgICAgICAgICAgICAkKCd0cltkYXRhLWlkPVwiJytpZCsnXCJdJykucmVtb3ZlKCk7XG4gICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICAgICAgICAgICAgICBTd2FsLmZpcmUoe1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlOiBcIlNvbWV0aGluZyB3ZW50IHdyb25nLlwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGljb246ICdlcnJvcicsXG4gICAgICAgICAgICAgICAgICAgICAgICB9KTtcbiAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgIH0pO1xuICAgICAgICAgICAgfVxuICAgICAgICB9KTtcbiAgICB9KTtcbn1cblxuJChkb2N1bWVudCkucmVhZHkoZnVuY3Rpb24gKCkge1xuICAgIHJlbW92ZSgpO1xufSk7XG4iXSwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL3BhZ2VzL3NlcnZlcnNfaW5kZXguanMuanMiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/pages/servers_index.js\n");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./resources/js/pages/servers_index.js"]();
+/******/ 	
+/******/ })()
+;

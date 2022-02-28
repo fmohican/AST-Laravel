@@ -18,15 +18,15 @@
                                                 <th>IP</th>
                                                 <th>Port</th>
                                                 <th>Pass</th>
-                                                <th><span class="pointer-event" data-bs-toggle="tooltip" data-bs-placement="top" title="'R' stand for RCON">R-</span>IP</th>
-                                                <th><span class="pointer-event" data-bs-toggle="tooltip" data-bs-placement="top" title="'R' stand for RCON">R-</span>Port</th>
-                                                <th><span class="pointer-event" data-bs-toggle="tooltip" data-bs-placement="top" title="'R' stand for RCON">R-</span>Pass</th>
+                                                <th><span class="cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="'R' stand for RCON">R-</span>IP</th>
+                                                <th><span class="cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="'R' stand for RCON">R-</span>Port</th>
+                                                <th><span class="cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="'R' stand for RCON">R-</span>Pass</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($servers as $server)
-                                            <tr>
+                                            <tr data-id="{{$server->id}}">
                                                 <td>{{$server->id}}</td>
                                                 <td>{{$server->nameNice}}</td>
                                                 <td>{{$server->serverIp}}</td>
@@ -36,9 +36,9 @@
                                                 <td>{{$server->rconPort}}</td>
                                                 <td>{{$server->rconPassword}}</td>
                                                 <td>
-                                                    <span class="material-icons-round text-warning mx-1">edit</span>
-                                                    <span class="material-icons-round text-danger mx-1">delete</span>
-                                                    <span class="material-icons-round text-info mx-1">network_ping</span>
+                                                    <span class="material-icons-round text-warning mx-1 cursor-pointer">edit</span>
+                                                    <span class="material-icons-round text-danger mx-1 cursor-pointer btn-delete" data-id="{{$server->id}}">delete</span>
+                                                    <span class="material-icons-round text-info mx-1 cursor-pointer">network_ping</span>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -119,3 +119,7 @@
         </div>
     </div>
 @endsection
+@push('js')
+    @routes('admin')
+    <script src="{{mix('js/pages/servers_index.js')}}"></script>
+@endpush
