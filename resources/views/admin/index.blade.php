@@ -38,7 +38,7 @@
                                                 <td>
                                                     <span class="material-icons-round text-warning mx-1 cursor-pointer">edit</span>
                                                     <span class="material-icons-round text-danger mx-1 cursor-pointer btn-delete" data-id="{{$server->id}}">delete</span>
-                                                    <span class="material-icons-round text-info mx-1 cursor-pointer">network_ping</span>
+                                                    <span class="material-icons-round text-info mx-1 cursor-pointer btn-ping" data-id="{{$server->id}}">network_ping</span>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -35,6 +35,25 @@ function remove() {
     });
 }
 
+function ping() {
+    $(document).on('click', '.btn-ping', function() {
+        let id = $(this).data('id');
+        $.post(route('app.admin.server.check'), {
+            serverId: id,
+        }).done(function (response) {
+            Swal.fire({
+                title: response.title,
+                icon: response.icon,
+                html: response.msg,
+            });
+        });
+    });
+}
+
 $(document).ready(function () {
+    $(document).ajaxSend(function(){
+        Swal.showLoading();
+    });
     remove();
+    ping();
 });

@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('public/{server}')->name('public.')->group(function() {
+    Route::get('', [\App\Http\Controllers\ServersController::class, 'serverlink']);
+});
+
 Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
@@ -24,6 +28,7 @@ Route::prefix('app')->name('app.')->middleware('User')->group(function () {
             Route::put('create', [\App\Http\Controllers\ServersController::class, 'create'])->name('create');
             Route::patch('edit', [\App\Http\Controllers\ServersController::class, 'edit'])->name('edit');
             Route::delete('delete', [\App\Http\Controllers\ServersController::class, 'delete'])->name('delete');
+            Route::post('check', [\App\Http\Controllers\ServersController::class, 'check'])->name('check');
         });
     });
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Servers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class ServersController extends Controller
@@ -60,6 +61,45 @@ class ServersController extends Controller
         } catch (\Exception $exception) {
             return response()->json([
                 'status' => 500,
+            ]);
+        }
+    }
+
+    public function check(Request $request) {
+        $request->validate([
+            'serverId' => ['integer', 'required']
+        ]);
+        $server = Servers::find($request->input('serverId'));
+        if($server->exists()) {
+            try {
+                $rcon = new RCONController($server->rconIp, $server->rconPassword, $server->rconPort, 60);
+                $ast_check = $rcon->send("AST Ping");
+                if($ast_check === "ping done.") {
+                    return response()->json([
+                        "title" => "Results",
+                        "icon" => "success",
+                        "msg" => "RCON connection has been made!<br/> AST Reached success fully!",
+                    ]);
+                } else {
+                    return response()->json([
+                        "title" => "Results",
+                        "icon" => "warning",
+                        "msg" => "RCON connection has been made!<br/> AST doesn't respond to our ping, it may cause problems",
+                    ]);
+                }
+            } catch (\Exception $e) {
+                return response()->json([
+                    "title" => "Something went wrong",
+                    "icon" => "error",
+                    "msg" => $e->getMessage(),
+                ]);
+            }
+        } else {
+            Log::error("Unregistered server", $request->all());
+            return response()->json([
+                "title" => "Unregistered server",
+                "icon" => "error",
+                "msg" => "The server you requested doesn't exist or has been removed.<br/> This error will be logged.",
             ]);
         }
     }
