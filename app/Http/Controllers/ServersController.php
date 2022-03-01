@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PlayerTransfer;
 use App\Models\Servers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -102,5 +103,53 @@ class ServersController extends Controller
                 "msg" => "The server you requested doesn't exist or has been removed.<br/> This error will be logged.",
             ]);
         }
+    }
+
+    public function export($server_source, Request $request) {
+        $server_s = filter_var($server_source, FILTER_SANITIZE_URL);
+        $server_s = Servers::where('nameSlug', $server_s)->first();
+        $server_d = filter_var($request->input('prm'), FILTER_SANITIZE_URL);
+        $server_d = Servers::where('nameSlug', $server_d)->first();
+        if($server_s->doesntExist()) {
+            return $this->anwser(400, "cannot export - unknown source server '".strip_tags($server_s)."'");
+        }
+        if($server_d->doesntExist()) {
+            return $this->anwser(400, "cannot export - unknown destination server '".strip_tags($server_d)."'");
+        }
+        try {
+            $rcon = new RCONController($server_s->rconIp, $server_s->rconPassword, $server_s->rconPort);
+            $result = $rcon->send('ast export "'.$request->input('fid').'"');
+            if($result != "export done.")
+                throw new \Exception("cannot export - rcon reply ".$result);
+            $json_data = "";
+            do {
+                $result = $rcon->send('ast read "'.$request->input('fid').'"');
+                $json_data .= $result;
+            } while ($result != " ");
+            $json = json_decode($json_data, true);
+            if($json->dosentExist())
+                throw new \Exception("cannot export - invalid json received");
+            PlayerTransfer::create([
+                "funcomId" => $request->input('fid'),
+                "from" => $server_s->id,
+                "to" => $server_d->id,
+                "payload" => serialize($json),
+            ]);
+            $rcon->send('ast remove "'.$request->input('fid').'"');
+            $rcon->send('ast exec "'.$request->input('fid').'" "open '.$request->input('prm').'"');
+            return $this->anwser(204, "");
+        } catch (\Exception $e) {
+            return $this->anwser(400, $e->getMessage());
+        }
+
+    }
+
+    /**
+     * @param int $code
+     * @param string $message
+     * @return string
+     */
+    private function anwser(int $code,string $message) {
+        return response()->setStatusCode($code)->content($message);
     }
 }
