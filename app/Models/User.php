@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'access'
     ];
 
     /**
@@ -33,12 +34,14 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public static function AccessToName($access): string
+    {
+        return match ($access) {
+            0 => "Banned",
+            1 => "User",
+            2 => "Helper",
+            3 => "Moderator",
+            5 => "Admin",
+        };
+    }
 }

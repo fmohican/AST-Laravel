@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreign('from')->references('id')->on('servers');
             $table->unsignedBigInteger('to');
             $table->foreign('to')->references('id')->on('servers');
+            $table->longText('payload');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
