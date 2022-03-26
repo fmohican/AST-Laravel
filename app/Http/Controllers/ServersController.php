@@ -105,17 +105,30 @@ class ServersController extends Controller
         }
     }
 
-    public function export($server_source, Request $request) {
-        $server_s = filter_var($server_source, FILTER_SANITIZE_URL);
-        $server_s = Servers::where('nameSlug', $server_s)->first();
+    public function serverlink(Request $request) {
+        switch ($request->input('cmd')) {
+            case "export":
+                return $this->export($request);
+            case "import":
+                return $this->import($request);
+            default:
+                $this->anwser(400, "Error");
+        }
+    }
+
+    private function export(Request $request) {
+        $server_s = filter_var($request->input('srv'), FILTER_SANITIZE_URL);
+        $server_s = Servers::where('nameSlug', $server_s);
         $server_d = filter_var($request->input('prm'), FILTER_SANITIZE_URL);
-        $server_d = Servers::where('nameSlug', $server_d)->first();
+        $server_d = Servers::where('nameSlug', $server_d);
         if($server_s->doesntExist()) {
-            return $this->anwser(400, "cannot export - unknown source server '".strip_tags($server_s)."'");
+            return $this->anwser(400, "cannot export - unknown source server");
         }
+        $server_s = $server_s->first();
         if($server_d->doesntExist()) {
-            return $this->anwser(400, "cannot export - unknown destination server '".strip_tags($server_d)."'");
+            return $this->anwser(400, "cannot export - unknown destination server");
         }
+        $server_d = $server_d->first();
         try {
             $rcon = new RCONController($server_s->rconIp, $server_s->rconPassword, $server_s->rconPort);
             $result = $rcon->send('ast export "'.$request->input('fid').'"');
@@ -127,7 +140,7 @@ class ServersController extends Controller
                 $json_data .= $result;
             } while ($result != " ");
             $json = json_decode($json_data, true);
-            if($json->dosentExist())
+            if(is_bool($json))
                 throw new \Exception("cannot export - invalid json received");
             PlayerTransfer::create([
                 "funcomId" => $request->input('fid'),
@@ -141,7 +154,6 @@ class ServersController extends Controller
         } catch (\Exception $e) {
             return $this->anwser(400, $e->getMessage());
         }
-
     }
 
     /**
@@ -150,6 +162,10 @@ class ServersController extends Controller
      * @return string
      */
     private function anwser(int $code,string $message) {
-        return response()->setStatusCode($code)->content($message);
+        return response($message, $code);
+    }
+
+    private function import(Request $request)
+    {
     }
 }

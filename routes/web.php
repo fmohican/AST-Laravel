@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('public/{server_source}')->name('public.')->group(function() {
-    Route::get('', [\App\Http\Controllers\ServersController::class, 'serverlink']);
-    Route::get('export', [\App\Http\Controllers\ServersController::class, 'export'])->name('export');
+Route::prefix('public')->name('public.')->group(function() {
+    Route::get('/', [\App\Http\Controllers\ServersController::class, 'serverlink']);
 });
 
 Auth::routes();
